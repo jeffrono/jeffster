@@ -1,0 +1,5 @@
+Home Directory: C:\Jeffster\ #
+Destination Directory: G:\MP3s\ #
+Download Directory: G:\shared\ #
+SID: 307908cbb6fff10bf0083932a95aeb4a #
+Number of Songs: 37 #
