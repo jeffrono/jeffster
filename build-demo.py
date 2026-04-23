@@ -14,15 +14,18 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 # ------------------------------------------------------------------ config
-W, H = 720, 450
-TITLE_H = 24
-BODY_TOP = TITLE_H + 1
-PAD_X, PAD_Y = 10, 6
+# Render at 1.67x the web display size — sharp enough to look crisp after
+# browser downscaling, but small enough to keep the GIF under ~3 MB.
+W, H = 1200, 750
+TITLE_H = 40
+BODY_TOP = TITLE_H + 2
+PAD_X, PAD_Y = 16, 10
 FONT_PATH = "/System/Library/Fonts/Supplemental/Courier New.ttf"
 FONT_PATH_BOLD = "/System/Library/Fonts/Supplemental/Courier New Bold.ttf"
 FONT_PATH_UI = "/System/Library/Fonts/Supplemental/Arial.ttf"
-FONT_SIZE = 13
-LINE_H = 15
+FONT_PATH_UI_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+FONT_SIZE = 20
+LINE_H = 24
 MAX_COLS = 80
 
 INK = (200, 200, 200)          # classic cmd foreground
@@ -36,7 +39,7 @@ HI = (255, 255, 255)
 
 font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
 font_bold = ImageFont.truetype(FONT_PATH_BOLD, FONT_SIZE)
-font_ui = ImageFont.truetype(FONT_PATH_UI, 11)
+font_ui = ImageFont.truetype(FONT_PATH_UI_BOLD, 16)
 
 # Measure char width
 bbox = font.getbbox("M")
@@ -103,15 +106,18 @@ class Terminal:
 
         # Title text
         title = "C:\\WINDOWS\\system32\\cmd.exe - perl Jeffster.pl"
-        d.text((8, 5), title, fill=TITLE_INK, font=font_ui)
+        d.text((12, 10), title, fill=TITLE_INK, font=font_ui)
 
         # Pseudo min/max/close buttons (far right)
-        bx = W - 70
+        btn_w, btn_h, btn_gap = 30, 26, 4
+        bx = W - 3 * (btn_w + btn_gap) - 4
         for i, col in enumerate([(200, 200, 210), (200, 200, 210), (230, 100, 100)]):
-            d.rectangle([bx + i*22, 4, bx + i*22 + 18, 20], fill=col, outline=(80, 80, 90))
+            d.rectangle([bx + i*(btn_w+btn_gap), 7, bx + i*(btn_w+btn_gap) + btn_w, 7 + btn_h],
+                        fill=col, outline=(80, 80, 90))
 
         # Thin client-area border
         d.line([(0, TITLE_H), (W, TITLE_H)], fill=(150, 150, 150))
+        d.line([(0, TITLE_H+1), (W, TITLE_H+1)], fill=(150, 150, 150))
 
         # Body: draw the last max_visible lines (scroll up)
         # If a partial is in progress, treat it as appended after the buffer's last line
@@ -430,24 +436,35 @@ print(f"Generated {len(frames)} frames")
 images = [f[0] for f in frames]
 durations = [f[1] for f in frames]
 
-# Build a shared palette that includes EVERY color the session uses,
-# then quantize all frames against it — much smaller than per-frame adaptive
-# palettes, no palette flicker.
-swatch = Image.new("RGB", (64, 1), BG)
-sw = ImageDraw.Draw(swatch)
-for i, c in enumerate([
-    BG, INK, HI, CURSOR, STAR_RED, TITLE_INK,
-    (150, 150, 150),   # client border
-    (80, 80, 90), (200, 200, 210), (230, 100, 100),  # button bits
-    TITLE_BG_1, TITLE_BG_2,
-    (20, 55, 125), (24, 67, 136), (27, 75, 140),   # gradient mid-tones
-    (12, 44, 115),
-]):
-    sw.rectangle([i, 0, i+1, 1], fill=c)
-master = swatch.convert("P", palette=Image.ADAPTIVE, colors=16)
+# Build a shared palette by sampling a handful of frames that cover every
+# color the session produces (title bar gradient, antialiased grays on text,
+# the red star marker). Using multiple representative frames gives Pillow's
+# ADAPTIVE quantizer the full color range to build a 64-color palette from.
+# 64 colors gives antialiased glyph edges enough gray shades to stay crisp.
+sample_indices = [
+    0,                        # cmd banner
+    len(images) // 10,        # mid typing
+    len(images) // 3,         # first listing with text
+    len(images) // 2,         # mid redraw with red marker
+    (len(images) * 2) // 3,   # ween section
+    len(images) - 20,         # download phase
+]
+# Stack sample frames vertically into a single palette-source image
+sample_imgs = [images[i] for i in sample_indices if i < len(images)]
+if sample_imgs:
+    palette_src = Image.new("RGB", (W, H * len(sample_imgs)))
+    for i, im in enumerate(sample_imgs):
+        palette_src.paste(im, (0, i * H))
+    master = palette_src.convert("P", palette=Image.ADAPTIVE, colors=64)
+else:
+    master = images[0].convert("P", palette=Image.ADAPTIVE, colors=64)
 images_p = [im.quantize(palette=master, dither=Image.Dither.NONE) for im in images]
 
 out = "jeffster-demo.gif"
+# disposal=1 ("do not dispose") lets the GIF encoder store only the
+# dirty rectangle for each frame relative to the previous frame —
+# massive savings during typing animations since only a few pixels change
+# per frame. optimize=True tells Pillow to compute that dirty rectangle.
 images_p[0].save(
     out,
     save_all=True,
@@ -455,7 +472,7 @@ images_p[0].save(
     duration=durations,
     loop=0,
     optimize=True,
-    disposal=2,
+    disposal=1,
 )
 size_kb = os.path.getsize(out) / 1024
 print(f"Wrote {out}: {size_kb:.1f} KB, {len(frames)} frames, ~{sum(durations)/1000:.1f}s total")

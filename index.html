@@ -782,6 +782,7 @@
   <div class="sub">an archaeological report</div>
   <ol>
     <li><a href="#overview">Overview</a></li>
+    <li><a href="#demo">The session, captured</a></li>
     <li><a href="#services">The three dead services</a></li>
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#ui">The 2002 UI, preserved</a></li>
@@ -844,8 +845,51 @@
 </section>
 
 <!-- ========================================================= -->
+<section id="demo">
+  <div class="eyebrow">Section 02 &nbsp;&middot;&nbsp; The session, captured</div>
+  <h2>Here's what a session actually looked like.</h2>
+  <p>
+    Before the architectural diagrams and the code snippets, here's the part that matters most —
+    <em>what it felt like to sit in front of a Dell running Windows XP in March 2002 and use this thing</em>.
+    Below is a faithful reconstruction: a <code class="inline">cmd.exe</code> session running
+    <code class="inline">Jeffster.pl</code> through three artist searches, picking four albums across
+    them, and triggering the download phase.
+  </p>
+
+  <figure class="demo-frame">
+    <img src="jeffster-demo.gif" alt="Animated terminal demo: searching FreeDB for Love, Mantronix, and Ween inside Jeffster.pl, picking four albums, then pressing D to begin the Audiogalaxy download phase with ranked enqueue output.">
+    <figcaption>
+      One full session: three artists (chosen at random from <code class="inline">masterArtistList.csv</code>),
+      four albums queued (<em>Forever Changes</em>, <em>The Album</em>, <em>Chocolate and Cheese</em>,
+      <em>The Mollusk</em>), then <code class="inline">D</code> to download. Compressed to 28 seconds;
+      in real life each "Listing results" page took 20&ndash;30 seconds because the script opens a second
+      HTTP request to FreeDB for every single row just to count tracks.
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="tag">▸ How to read the demo</div>
+    The three distinct phases on screen:
+    <ol style="margin: 10px 0 0 24px;">
+      <li><strong>Search phase</strong> — you type an artist name, FreeDB returns a list of albums; you type a row number to queue it. The red <code class="inline">**** JUST ADDED *****</code> marks your last pick on the re-draw.</li>
+      <li><strong>Navigation</strong> — <code class="inline">A</code> ends the current artist and loops back to the "enter artist name" prompt; <code class="inline">D</code> ends the whole search phase and begins downloading.</li>
+      <li><strong>Download phase</strong> — Jeffster walks each queued album, searches Audiogalaxy for each track, prints <code class="inline">Track.mp3: 4</code> with the star rating, then the
+      <code class="inline">Transferring / Processing / Busy / Offline</code> status ticker, then the destination directory
+      (<code class="inline">!Artist - Album (n of m)</code> — the bang prefix meaning "incomplete").</li>
+    </ol>
+  </div>
+
+  <p>
+    The full walk-through of each script is in
+    <a href="#scripts" style="color: var(--accent-2); font-weight: 600;">Section 07</a>;
+    the code behind the <code class="inline">**** JUST ADDED *****</code> state machine is in
+    <code class="inline">Jeffster.pl</code>'s three-label <code class="inline">goto</code> dance.
+  </p>
+</section>
+
+<!-- ========================================================= -->
 <section id="services">
-  <div class="eyebrow">Section 02 &nbsp;&middot;&nbsp; Cast of the dead</div>
+  <div class="eyebrow">Section 03 &nbsp;&middot;&nbsp; Cast of the dead</div>
   <h2>The three services it glued together.</h2>
   <p>
     Every single external service this script talks to has been dead for at least 20 years. This is what they were,
@@ -907,7 +951,7 @@
 
 <!-- ========================================================= -->
 <section id="architecture">
-  <div class="eyebrow">Section 03 &nbsp;&middot;&nbsp; Diagram</div>
+  <div class="eyebrow">Section 04 &nbsp;&middot;&nbsp; Diagram</div>
   <h2>How the whole machine fit together.</h2>
   <p>
     Three web services, five Perl scripts, four text files, and one very patient Windows XP tower running with
@@ -1042,7 +1086,7 @@
 
 <!-- ========================================================= -->
 <section id="ui">
-  <div class="eyebrow">Section 04 &nbsp;&middot;&nbsp; The preserved UI</div>
+  <div class="eyebrow">Section 05 &nbsp;&middot;&nbsp; The preserved UI</div>
   <h2>The 2002 interface, exactly as it was.</h2>
   <p>
     In March 2002 — three months before Audiogalaxy died — I took a run at wrapping Jeffster in a human interface.
@@ -1213,7 +1257,7 @@
 
 <!-- ========================================================= -->
 <section id="artifacts">
-  <div class="eyebrow">Section 05 &nbsp;&middot;&nbsp; Inventory</div>
+  <div class="eyebrow">Section 06 &nbsp;&middot;&nbsp; Inventory</div>
   <h2>Everything on disk, explained.</h2>
   <p>
     A complete tour of every file in the project directory, in the order you'd encounter them.
@@ -1277,7 +1321,7 @@
 
 <!-- ========================================================= -->
 <section id="scripts">
-  <div class="eyebrow">Section 06 &nbsp;&middot;&nbsp; Scripts, annotated</div>
+  <div class="eyebrow">Section 07 &nbsp;&middot;&nbsp; Scripts, annotated</div>
   <h2>The five scripts, walked through.</h2>
 
   <!-- JEFFSTER 1.2 -->
@@ -1398,25 +1442,10 @@
     <figcaption>Three <code>goto</code>s, three labels, no <code>while</code> loop. This is how state machines looked before anyone told me about state machines.</figcaption>
   </figure>
 
-  <h3>What it actually felt like to use</h3>
   <p>
-    Below is a faithful reconstruction of the terminal session — three artists picked at random from
-    <code class="inline">masterArtistList.csv</code> (Love, Mantronix, Ween), each with real album titles
-    that <em>would</em> have come back from FreeDB in 2002. The user types an artist string, gets sixteen
-    matching album rows back, queues the ones they want, presses <code class="inline">A</code> to move on,
-    then presses <code class="inline">D</code> to start downloading. Compressed to ~28 seconds; in real life
-    each "Listing results" page took 20&ndash;30 seconds to render because the script
-    <em>opens a second HTTP request to FreeDB for each of the sixteen rows</em> just to count tracks.
+    For what this actually felt like to use, see the captured session up top in
+    <a href="#demo" style="color: var(--accent-2); font-weight: 600;">Section 02</a>.
   </p>
-
-  <figure class="demo-frame">
-    <img src="jeffster-demo.gif" alt="Animated GIF: Jeffster.pl terminal session — searching FreeDB for Love, Mantronix, and Ween, picking four albums, pressing D to download, then watching the ranked Audiogalaxy enqueue output stream by.">
-    <figcaption>
-      One full session: three artists, four albums, four bang-prefixed incomplete-album folders on the way to
-      <code class="inline">G:\MP3s\</code>. The red <code>**** JUST ADDED *****</code> is how the script tells you
-      it remembered what you typed last.
-    </figcaption>
-  </figure>
 
   <!-- SAMPLE ARTIST -->
   <h3>The sampler <span class="file">// SampleArtist.pl</span></h3>
@@ -1515,7 +1544,7 @@
 
 <!-- ========================================================= -->
 <section id="formats">
-  <div class="eyebrow">Section 07 &nbsp;&middot;&nbsp; Homegrown formats</div>
+  <div class="eyebrow">Section 08 &nbsp;&middot;&nbsp; Homegrown formats</div>
   <h2>Four file formats I invented on the spot.</h2>
   <p>
     I couldn't be bothered with <em>any</em> existing serialization format, so every on-disk data structure is custom.
@@ -1648,7 +1677,7 @@ pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt
 
 <!-- ========================================================= -->
 <section id="artists">
-  <div class="eyebrow">Section 08 &nbsp;&middot;&nbsp; Artists in the queue</div>
+  <div class="eyebrow">Section 09 &nbsp;&middot;&nbsp; Artists in the queue</div>
   <h2>Who 21-year-old me was actually downloading.</h2>
   <p>
     Every artist below appears in at least one of the work-queue files still on disk —
@@ -1868,7 +1897,7 @@ pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt
 
 <!-- ========================================================= -->
 <section id="shame">
-  <div class="eyebrow">Section 09 &nbsp;&middot;&nbsp; The wall of shame</div>
+  <div class="eyebrow">Section 10 &nbsp;&middot;&nbsp; The wall of shame</div>
   <h2>Things 21-year-old me did that deserve to be remembered.</h2>
   <p>
     With great affection and the full benefit of 24 years of hindsight. None of these were wrong, exactly —
@@ -2004,7 +2033,7 @@ pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt
 
 <!-- ========================================================= -->
 <section id="epilogue" class="epilogue">
-  <div class="eyebrow">Section 10 &nbsp;&middot;&nbsp; Epilogue</div>
+  <div class="eyebrow">Section 11 &nbsp;&middot;&nbsp; Epilogue</div>
   <h2>What happened next.</h2>
   <p>
     <em>May 24, 2002.</em> The RIAA filed suit against Audiogalaxy. By June they had settled; by the end of the
