@@ -538,6 +538,213 @@
 
   /* Selection */
   ::selection { background: var(--accent-3); color: var(--bg); }
+
+  /* ==== RECONSTRUCTED 2002 UI ==== */
+  .browser-chrome {
+    margin: 40px 0;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 var(--ink);
+    overflow: hidden;
+    background: #fff;
+  }
+  .browser-chrome .chrome-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #d8d8d8;
+    border-bottom: 1.5px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .browser-chrome .chrome-bar .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #a8a8a8;
+    border: 1px solid #888;
+  }
+  .browser-chrome .chrome-bar .url {
+    flex: 1;
+    background: #fff;
+    border: 1px inset #888;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: #555;
+    margin-left: 16px;
+  }
+  .frameset {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 420px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11px;
+  }
+  .frameset .leftframe {
+    border-right: 2px solid #000;
+    overflow: hidden;
+  }
+  .frameset .leftframe-title {
+    background: #336699;
+    color: #fff;
+    padding: 6px 10px;
+    font-weight: bold;
+    font-size: 11px;
+    border-bottom: 2px solid #000;
+  }
+  .frameset table.ag-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .frameset table.ag-table tr { background: #fff; }
+  .frameset table.ag-table tr.alt { background: #CCCCCC; }
+  .frameset table.ag-table td {
+    padding: 3px 6px;
+    vertical-align: middle;
+  }
+  .frameset table.ag-table td.artist { font-weight: bold; color: #000; }
+  .frameset table.ag-table td.icons img { vertical-align: middle; }
+  .frameset .mainframe {
+    padding: 20px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-style: italic;
+    font-family: Georgia, serif;
+  }
+  .rating-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .rating {
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    padding: 18px 20px;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0 var(--ink);
+    text-align: center;
+  }
+  .rating img {
+    image-rendering: pixelated;
+    width: 48px; height: 48px;
+    margin-bottom: 8px;
+    background: #fff;
+    padding: 4px;
+    border: 1px solid #d8d8d8;
+  }
+  .rating .rank {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--accent-2);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .rating .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  /* ==== ARTIST SHOWCASE ==== */
+  .artist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin: 40px 0;
+  }
+  .artist-card {
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 22px 22px 20px;
+    box-shadow: 5px 5px 0 var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .artist-card .badge {
+    position: absolute;
+    top: -14px; right: 16px;
+    background: var(--accent-3);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .artist-card .badge.pink { background: var(--accent-2); }
+  .artist-card .badge.green { background: var(--accent); }
+  .artist-card .badge.blue { background: var(--accent-4); }
+  .artist-card .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .artist-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+  }
+  .artist-card .genre {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    background: var(--bg-3);
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    align-self: flex-start;
+  }
+  .artist-card .bio {
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .artist-card .source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faded);
+    padding-top: 12px;
+    border-top: 1px dashed var(--ink);
+  }
+  .artist-card .source strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .artist-card .source .snip {
+    display: block;
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: #15131f;
+    color: #8cff9e;
+    border-radius: 3px;
+    font-size: 10.5px;
+    word-break: break-all;
+  }
 </style>
 </head>
 <body>
@@ -551,9 +758,11 @@
     <li><a href="#overview">Overview</a></li>
     <li><a href="#services">The three dead services</a></li>
     <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#ui">The 2002 UI, preserved</a></li>
     <li><a href="#artifacts">Files &amp; artifacts</a></li>
     <li><a href="#scripts">The scripts, annotated</a></li>
     <li><a href="#formats">Invented data formats</a></li>
+    <li><a href="#artists">Artists in the queue</a></li>
     <li><a href="#shame">The wall of shame</a></li>
     <li><a href="#epilogue">What happened next</a></li>
   </ol>
@@ -806,8 +1015,179 @@
 </section>
 
 <!-- ========================================================= -->
+<section id="ui">
+  <div class="eyebrow">Section 04 &nbsp;&middot;&nbsp; The preserved UI</div>
+  <h2>The 2002 interface, exactly as it was.</h2>
+  <p>
+    In March 2002 — three months before Audiogalaxy died — I took a run at wrapping Jeffster in a human interface.
+    <code class="inline">turnIntoHTML.pl</code> reads <code class="inline">masterArtistList.csv</code>
+    (10,907 rows; a cached snapshot of every artist Audiogalaxy knew about plus their popularity rank 11–25),
+    filters down to the top-200 rank-25 artists, and emits a two-frame browser UI: artist list on the left,
+    whichever page you last clicked on the right.
+  </p>
+
+  <p>
+    Below is a faithful reconstruction. The rating GIFs, the Audiogalaxy and CDnow brand glyphs, the alternating
+    grey rows, the 240-pixel blue title bar — all of it is the actual HTML/GIF data from 2002, rendered in 2026.
+  </p>
+
+  <div class="browser-chrome">
+    <div class="chrome-bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">file:///C:/Jeffster/webpage/index.htm</span>
+    </div>
+    <div class="frameset">
+      <div class="leftframe">
+        <div class="leftframe-title">Master Artist List — Jeffster 1.1</div>
+        <table class="ag-table">
+          <tr>
+            <td class="artist">883</td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=" width="16" height="16" alt="4 bars"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTppHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" alt="audiogalaxy"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" alt="cdnow"></td>
+          </tr>
+          <tr class="alt">
+            <td class="artist">13th floor elevators</td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=" width="16" height="16" alt="4 bars"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTphHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" alt="audiogalaxy"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" alt="cdnow"></td>
+          </tr>
+          <tr>
+            <td class="artist">2gether</td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=" width="16" height="16" alt="4 bars"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTphHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" alt="audiogalaxy"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" alt="cdnow"></td>
+          </tr>
+          <tr class="alt">
+            <td class="artist">3 dog night</td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=" width="16" height="16" alt="4 bars"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTphHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" alt="audiogalaxy"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" alt="cdnow"></td>
+          </tr>
+          <tr>
+            <td class="artist">808 state</td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=" width="16" height="16" alt="4 bars"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTphHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" alt="audiogalaxy"></td>
+            <td class="icons"><img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" alt="cdnow"></td>
+          </tr>
+          <tr class="alt" style="opacity: 0.6;">
+            <td class="artist" colspan="4" style="text-align: center; font-style: italic; color: #666;">… 195 more artists below …</td>
+          </tr>
+        </table>
+      </div>
+      <div class="mainframe">
+        mainFrame — populated when you click a row
+      </div>
+    </div>
+  </div>
+
+  <p>
+    The two icon columns next to each artist are deep links:
+    <img src="data:image/gif;base64,R0lGODlhFAAUAOYAALCwsMnJye/v79bW1jk5OTg4OEdHR6KiouHh4V9fX83Nzbm5uTY2NnJycj09Paenp1ZWVuPj4zw8PERERFFRUSsrK0VFRTc3N29vb2VlZUpKSiwsLP39/UhISE5OTszMzPj4+Nzc3NPT0zo6Ol1dXdXV1enp6VBQUM/Pz5CQkNvc3MvLy+bm5tjY2N/f393d3ejo6Ds7O5GRkWlpabS0tIGBgd7e3kNDQ5mZmS0tLVpaWkFCQcDAwHFxcZ+fn25ubqqqqo+Pj9nZ2aWlpZ6enmZmZnNzc66urlVVVdfX14mJiWFiYUlJSU1NTW1tbXZ2dn9/fz8/P1NTU9rb2mBgYEFBQUZGRk9PT9XW1p2dneLi4uXl5a2trT4+PtTU1DU1NYWFhVhYWODh4Y6OjkxMTNHR0TIyMmpqapWVlUtLS+Dg4GRkZPPz876+vrW1teTk5KysrGhoaNvb20JCQtLS0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAUABQAAAf/gHRyg3QBbYcLbQsLbo1uAG5gcnWUlBwgbJmaAiZvanAUdHUCbxAOVk8rcgOrdK4BcA1pom9vJwMlVBQAaghwKSUDdHBOaQF1cmoWPEI2R1IpakoXZ2rDcQZtHMkOOi8tCElrGRNNMm/Xc20gdGoeEgAhKgpGBFcwpMNr6mysGAUaUNBY0mUNlDEwIuhTJ0BQlgIFmMjZkeANFiRcXtB5kIAfKxRkGIicMkCEFxphRCxs01BOBAAELhRIs0JLiBZxamzsuICNoDcsDkQhQOCGDxYIPmhY6MannDcuVECAOELCCQAKqlxz4KYlAjFACFjIgONHhw4eZjBt+WaLBQIGaXoMcYEggicFB+LMcWMigCA0EmLEmDCjTK1BsPS6eRNAwQcGXy6MmEMCg6tCbfIacKMGAIAJFSpsqJBjgxkZB+A8OEAkTphHDRrEmb2GRJE1CeKsmT1bVhAIFNIYMDCnuPHiDuYYSMM8EAA7" width="20" height="20" style="vertical-align: middle; border: 1px solid #d8d8d8;" alt="audiogalaxy">
+    takes you to Audiogalaxy's page for that artist (using the ID from the CSV), and
+    <img src="data:image/gif;base64,R0lGODlhFwAeALP/AP///+rq6ubm5tHR0c/Pz8zMzMnJycTExL6+vrS0tKenp5+fn5SUlJGRkY+Pj4yMjCH/C0FET0JFOklSMS4wAt7tACH5BAAAAAAALAAAAAAXAB4AAAR2EMhJq7046807KGAojmTxeZZpYgWzpifWPA0bX8qj2K8VIIFCQxGgqDiMxwNhvGUGw+LkKCRWA4So5OBYCE6m5FKMmD0OEnMCDIAS3VgtwND9HjfXZg9D1nPgfixyFXcXfTB7FICIKIQfJZAkjZOUlZaXmJkWEQA7" width="23" height="30" style="vertical-align: middle; border: 1px solid #d8d8d8;" alt="cdnow">
+    runs a search on CDnow (using the artist's name string-interpolated into the URL). Both links are dead now.
+  </p>
+
+  <h3>The rating icons, explained.</h3>
+  <p>
+    The third column in every row of the table is one of five tiny 16&times;16 GIFs that came from Audiogalaxy's own
+    assets — I kept copies so my UI would match theirs visually. Each one encoded how likely Audiogalaxy was to have
+    a high-quality source for that artist; <code class="inline">enqueueSong</code> looks for the same GIF names when
+    picking which search result to download.
+  </p>
+
+  <div class="rating-legend">
+    <div class="rating">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAJECADjgkBqLlP///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=">
+      <div class="rank">4</div>
+      <div class="label">4_0.gif — top tier</div>
+    </div>
+    <div class="rating">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAJEDADjgkBqLlIiIiP///yH5BAEAAAMALAAAAAAQABAAAAItnI+pi+DhAHyijjglruI+vFngR4mkVnYjKnEemwXuGs9nbcKheu9v7GMIh4kCADs=">
+      <div class="rank">3</div>
+      <div class="label">3_0.gif — solid</div>
+    </div>
+    <div class="rating">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAKIEADjgkIiIiBqLlD9ikf///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAM2SLrc/gxIIYEIeOBAKp2bhnWTF26kZWaotwYi54LsOFunXdJwu+M12e8STH2APZ2KF4M4n44EADs=">
+      <div class="rank">2</div>
+      <div class="label">2_0.gif — take what you can get</div>
+    </div>
+    <div class="rating">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAKIEAIiIiDjgkD9ikRqLlP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAMySLrc/izIAaqo4FYiA7WYBnBTaG7dl51jyoqk92KxKsIuqLfljverXW2GAt5okKSykQAAOw==">
+      <div class="rank">1</div>
+      <div class="label">1_0.gif — give up, log error</div>
+    </div>
+    <div class="rating">
+      <img src="data:image/gif;base64,R0lGODlhEAAQAJECAIiIiD9ikf///wAAACH5BAEAAAIALAAAAAAQABAAAAInlI+pi+DhAHxRxClv1bQD62EYmIWb6ZEi97Gro7pnSY9yetPMzisFADs=">
+      <div class="rank">0</div>
+      <div class="label">z_0.gif — unavailable</div>
+    </div>
+  </div>
+
+  <p>
+    The ranking ladder is encoded directly in the regex from
+    <code class="inline">jeffster1.2.pl</code>: it greps the search result page for <code class="inline">4_0.gif</code> first
+    and only falls back to <code class="inline">3_0.gif</code>, then <code class="inline">2_0.gif</code>, then
+    <code class="inline">1_0.gif</code> (marked as a <em>failure</em> and written to errors.csv). The UI on this page
+    is displaying the same raw asset bytes that <code class="inline">enqueueSong</code> was grepping for inside Audiogalaxy's HTML.
+  </p>
+
+  <div class="callout">
+    <div class="tag">◎ Aesthetic note</div>
+    The "bars" are a little blue triangle pointing at a row of dots. Four dots = 4 bars, three dots = 3, and so on.
+    The <code class="inline">z_0.gif</code> variant (zero bars, faded triangle) marks artists that had no sources at
+    all. Very late-90s Geocities energy. The dithered edge on the triangle is still there if you zoom in.
+  </div>
+
+  <h3>The HTML generator, in full.</h3>
+  <figure class="code">
+    <header><span class="fname">webpage/turnIntoHTML.pl</span><span class="meta">// the whole thing, 41 lines</span></header>
+<pre><span class="k">open</span>(OUT, <span class="s">"&gt;leftFrame.htm"</span>);
+<span class="k">print</span> OUT <span class="s">"&lt;html&gt;&lt;title&gt;Master Artist List -- Jeffster 1.1&lt;/title&gt;..."</span>;
+<span class="k">close</span>(OUT);
+
+<span class="k">open</span>(IN, <span class="s">"&lt;masterArtistList.csv"</span>);
+<span class="v">$num</span> = <span class="n">0</span>;
+<span class="k">while</span> (&lt;IN&gt;) {
+
+    <span class="re">/([^,]+),(\d+),(\d+)/</span>;
+    <span class="v">$artist</span> = <span class="v">$1</span>;
+    <span class="v">$ID</span>     = <span class="v">$2</span>;
+    <span class="v">$rank</span>   = <span class="v">$3</span>;
+
+    <span class="k">if</span> (<span class="v">$rank</span> &gt; <span class="n">24</span> &amp;&amp; <span class="v">$num</span> &lt; <span class="n">200</span>) {
+        <span class="v">$num</span>++;
+        <span class="k">open</span>(OUT, <span class="s">"&gt;&gt;leftFrame.htm"</span>);
+        <span class="k">print</span> OUT <span class="s">"&lt;tr"</span>;
+
+        <span class="k">if</span> (<span class="v">$num</span> % <span class="n">2</span> == <span class="n">0</span>) { <span class="k">print</span> OUT <span class="s">" bgcolor=\"#CCCCCC\""</span>; }
+
+        <span class="k">print</span> OUT <span class="s">"&gt;\n"</span>;
+        <span class="k">print</span> OUT <span class="s">"&lt;td&gt;&lt;b&gt;</span><span class="v">$artist</span><span class="s">&lt;/b&gt;&lt;/td&gt;\n"</span>;
+        <span class="k">print</span> OUT <span class="s">"&lt;td&gt;&lt;img src=\""</span>;
+
+        <span class="c">#if (</span><span class="v">$ID</span><span class="c"> &lt; 13) { print OUT "z_0.gif"; }</span>
+        <span class="c">#elsif (</span><span class="v">$ID</span><span class="c"> &lt; 16) { print OUT "1_0.gif"; }</span>
+        <span class="c">#elsif (</span><span class="v">$ID</span><span class="c"> &lt; 19) { print OUT "2_0.gif"; }</span>
+        <span class="c">#elsif (</span><span class="v">$ID</span><span class="c"> &lt; 22) { print OUT "3_0.gif"; }</span>
+        <span class="c">#else {</span>
+            <span class="k">print</span> OUT <span class="s">"4_0.gif"</span>;
+
+        <span class="k">print</span> OUT <span class="s">"\"&gt;&lt;/td&gt;\n"</span>;
+        <span class="c"># ...emit AG deep-link and CDnow search-link &lt;td&gt;s...</span>
+    }
+}
+
+<span class="k">print</span> OUT <span class="s">"&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;"</span>;
+<span class="k">close</span>(OUT);</pre>
+    <figcaption>Five commented-out branches for graduated rating icons based on <code>$ID</code> — never finished, so every artist just gets the 4-bar icon. Note the stray orphaned <code>else {</code> block that was supposed to wrap a conditional that no longer exists.</figcaption>
+  </figure>
+</section>
+
+<!-- ========================================================= -->
 <section id="artifacts">
-  <div class="eyebrow">Section 04 &nbsp;&middot;&nbsp; Inventory</div>
+  <div class="eyebrow">Section 05 &nbsp;&middot;&nbsp; Inventory</div>
   <h2>Everything on disk, explained.</h2>
   <p>
     A complete tour of every file in the project directory, in the order you'd encounter them.
@@ -871,7 +1251,7 @@
 
 <!-- ========================================================= -->
 <section id="scripts">
-  <div class="eyebrow">Section 05 &nbsp;&middot;&nbsp; Scripts, annotated</div>
+  <div class="eyebrow">Section 06 &nbsp;&middot;&nbsp; Scripts, annotated</div>
   <h2>The five scripts, walked through.</h2>
 
   <!-- JEFFSTER 1.2 -->
@@ -912,6 +1292,31 @@
     <span class="v">$errorMark</span> = <span class="n">1</span>;
 }</pre>
     <figcaption>A ladder of almost-identical regexes, because the decision couldn't be bothered to parameterize.</figcaption>
+  </figure>
+
+  <p>
+    After each batch of tracks is enqueued, the script prints a live status line that tells you how the Audiogalaxy
+    Satellite queue is doing. The implementation is four sequential regexes, each greping for
+    <code class="inline">&amp;nbsp;</code> counts on the same page:
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">jeffster1.2.pl</span><span class="meta">// the progress ticker — the nbsp situation</span></header>
+<pre><span class="v">$URL</span> = <span class="s">"http://www.audiogalaxy.com/satellite/queue.php?SID="</span> . <span class="v">$SID</span>;
+<span class="v">$_</span> = <span class="k">get</span>(<span class="v">$URL</span>);
+
+<span class="re">/(\d+)&amp;nbsp;transferring/g</span>;
+<span class="k">print</span> <span class="s">"Transferring: </span><span class="v">$1</span><span class="s">"</span>;
+
+<span class="re">/(\d+)&amp;nbsp;processing/g</span>;
+<span class="k">print</span> <span class="s">" -- Processing: </span><span class="v">$1</span><span class="s">"</span>;
+
+<span class="re">/(\d+)&amp;nbsp;busy/g</span>;
+<span class="k">print</span> <span class="s">" -- Busy: </span><span class="v">$1</span><span class="s">"</span>;
+
+<span class="re">/(\d+)&amp;nbsp;offline/g</span>;
+<span class="k">print</span> <span class="s">" -- Offline: </span><span class="v">$1</span><span class="s">\n"</span>;</pre>
+    <figcaption>Four grep-and-print pairs lifted straight out of Audiogalaxy's rendered HTML. Output looks like <code>Transferring: 3 -- Processing: 1 -- Busy: 0 -- Offline: 7</code>, which is exactly what I stared at for hours.</figcaption>
   </figure>
 
   <div class="callout warn">
@@ -1064,7 +1469,7 @@
 
 <!-- ========================================================= -->
 <section id="formats">
-  <div class="eyebrow">Section 06 &nbsp;&middot;&nbsp; Homegrown formats</div>
+  <div class="eyebrow">Section 07 &nbsp;&middot;&nbsp; Homegrown formats</div>
   <h2>Four file formats I invented on the spot.</h2>
   <p>
     I couldn't be bothered with <em>any</em> existing serialization format, so every on-disk data structure is custom.
@@ -1137,11 +1542,287 @@ pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt
 ?cat=misc&amp;id=aa0a100c<span class="v">&lt;</span>The Guest<span class="v">&lt;</span>Phantom Planet</pre>
     <figcaption>The White Stripes' first four albums, queued up on March 29, 2002. This list has been sitting in the repo untouched for 24 years.</figcaption>
   </figure>
+
+  <h3>$albumArray <span class="file">// a 2D array with the schema in an ASCII-art comment</span></h3>
+  <p>
+    The most elaborate in-memory data structure Jeffster ever built is
+    <code class="inline">@albumArray</code> — a 2D ragged array that encodes an entire artist's discography,
+    with different rows meaning different things. There's no struct, no hash-of-hashes — just raw integer
+    coordinates and a hope that future-you remembers what goes where. Future-me helpfully left a diagram in
+    the source:
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">jeffster1.2.pl</span><span class="meta">// the data-model comment above getAlbumInfo, verbatim</span></header>
+<pre><span class="c">#####################################</span>
+<span class="c"># subroutine to retrieve album data for a given artist from CDnow.com</span>
+<span class="c"># and given a artist/album combo,</span>
+<span class="c">#####################################</span>
+
+<span class="c"># outputs 2D array:</span>
+<span class="c"># [number of albums]</span>
+<span class="c"># [artist]</span>
+<span class="c"># [title of album1 2 0] [title of album2 2 1] ...</span>
+<span class="c"># [track 1 - 3 0]         [track 1]</span>
+<span class="c"># [track 2]               [track 2]...</span>
+
+<span class="k">sub</span> getAlbumInfo {
+    <span class="c"># ...</span>
+}</pre>
+    <figcaption>The numbers in brackets (<code>2 0</code>, <code>3 0</code>) are the row/column indices for
+    where that value lives. Row 0 is a scalar (album count). Row 1 is a scalar (artist name). Row 2 is an array
+    indexed by album. Row 3+ are parallel arrays of tracks per album. The "type definition" lives exclusively here.</figcaption>
+  </figure>
+
+  <h3>info.txt <span class="file">// starred-banner human-readable output</span></h3>
+  <p>
+    There's also <code class="inline">printTitles</code>, a sub that dumps <code class="inline">@albumArray</code>
+    into a plain-text report for after-the-fact sanity checking. It uses a format you'd recognise if you've ever
+    seen a <code class="inline">README.TXT</code> from the BBS era:
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">jeffster1.2.pl</span><span class="meta">// sub printTitles → appends to info.txt</span></header>
+<pre><span class="k">sub</span> printTitles {
+    <span class="k">open</span>(INFO, <span class="s">"&gt;&gt;"</span> . <span class="v">$directory</span> . <span class="s">"info.txt"</span>);
+    <span class="k">for</span> (<span class="v">$i</span> = <span class="n">0</span>; <span class="v">$i</span> &lt; <span class="v">$numberOfAlbums</span>; <span class="v">$i</span>++) {
+        <span class="k">print</span> INFO <span class="s">"** </span><span class="v">$artist</span><span class="s"> - </span><span class="v">$albumArray[2][$i]</span><span class="s"> *********\n"</span>;
+        <span class="v">$j</span> = <span class="n">3</span>;
+        <span class="k">while</span> (<span class="v">$albumArray</span>[<span class="v">$j</span>][<span class="v">$i</span>] <span class="k">ne</span> <span class="s">""</span>) {
+            <span class="k">print</span> INFO <span class="v">$j</span>-<span class="n">2</span> . <span class="s">" - </span><span class="v">$albumArray[$j][$i]</span><span class="s">\n"</span>;
+            <span class="v">$j</span> += <span class="n">1</span>;
+        }
+    }
+    <span class="k">close</span>(INFO);
+}</pre>
+    <figcaption>Every album gets a 9-star banner header (<code>** Artist - Album *********</code>) followed by
+    numbered tracks. No one ever read the output. The <code>info.txt</code> file isn't even in the repo.</figcaption>
+  </figure>
+</section>
+
+<!-- ========================================================= -->
+<section id="artists">
+  <div class="eyebrow">Section 08 &nbsp;&middot;&nbsp; Artists in the queue</div>
+  <h2>Who 21-year-old me was actually downloading.</h2>
+  <p>
+    Every artist below appears in at least one of the work-queue files still on disk —
+    <code class="inline">albumList.txt</code>, <code class="inline">sampleArtist.txt</code>,
+    <code class="inline">errors.csv</code>, or <code class="inline">Queue.txt</code>. Their presence in these
+    files is a small frozen archive of what I was listening to (or trying to listen to) on the last weekend
+    Jeffster ran in March 2002. The mix is embarrassingly eclectic. I stand by every pick.
+  </p>
+
+  <div class="artist-grid">
+
+    <div class="artist-card">
+      <div class="badge pink">4-star</div>
+      <div class="year">Detroit · 1997 — 2011</div>
+      <h4>The White Stripes</h4>
+      <span class="genre">garage rock · indie blues</span>
+      <p class="bio">
+        Jack and Meg White, pretending to be siblings. Four LPs in, already canonical — but
+        <em>Elephant</em> and <em>"Seven Nation Army"</em> wouldn't land for another year. I was queueing them
+        right before they broke through.
+      </p>
+      <div class="source">
+        <strong>source:</strong> albumList.txt
+        <span class="snip">?cat=rock&amp;id=d6097f10&lt;White Blood Cells&lt;The White Stripes</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge green">4-star</div>
+      <div class="year">LA · 1994 — present</div>
+      <h4>Phantom Planet</h4>
+      <span class="genre">power-pop · indie</span>
+      <p class="bio">
+        <em>The Guest</em>, released December 2001. Contains "California," which 18 months after this queue
+        entry became the theme song for <em>The O.C.</em> and lodged permanently in American teen-TV history.
+      </p>
+      <div class="source">
+        <strong>source:</strong> albumList.txt
+        <span class="snip">?cat=misc&amp;id=aa0a100c&lt;The Guest&lt;Phantom Planet</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge blue">queue</div>
+      <div class="year">Philadelphia · 1995 — present</div>
+      <h4>Pink</h4>
+      <span class="genre">pop · pop-rock</span>
+      <p class="bio">
+        <em>Missundaztood</em>, 2001. "Get the Party Started," "Don't Let Me Get Me,"
+        "Family Portrait." She had just pivoted from teen R&amp;B to Linda Perry-produced
+        rock-pop and the album lived in every car.
+      </p>
+      <div class="source">
+        <strong>source:</strong> Queue.txt · errors.csv (5 failed tracks)
+        <span class="snip">Pink ~ M!ssundaztood - Just Like A Pill.mp3&lt;s&gt;G:\MP3s\!Pink - Missundaztood (8 of 14)\&lt;d&gt;</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge pink">4-star</div>
+      <div class="year">NYC · 1981 — 2011</div>
+      <h4>Sonic Youth</h4>
+      <span class="genre">noise rock · no-wave</span>
+      <p class="bio">
+        Thurston Moore, Kim Gordon, Lee Ranaldo, Steve Shelley. Twenty years deep by 2002 and still putting out
+        <em>Murray Street</em>. Sampling this band meant being willing to download 9-minute guitar-squeal tracks,
+        which Audiogalaxy did not rank highly.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt (line 1)
+        <span class="snip">sonic youth</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge green">4-star</div>
+      <div class="year">England · 1988 — 1991</div>
+      <h4>The Traveling Wilburys</h4>
+      <span class="genre">supergroup · rock</span>
+      <p class="bio">
+        George Harrison, Bob Dylan, Roy Orbison, Tom Petty, Jeff Lynne. That is the lineup. Two albums, both
+        brilliant, and a stubborn refusal to take themselves seriously. By 2002, Orbison and Harrison were gone.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">the traveling wilburys</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge pink">4-star</div>
+      <div class="year">Brooklyn · 1994 — present</div>
+      <h4>Mos Def</h4>
+      <span class="genre">hip-hop · conscious rap</span>
+      <p class="bio">
+        <em>Black on Both Sides</em> had been out for two and a half years. Political, literary Brooklyn rap —
+        the stuff I downloaded because I was reading <em>The Source</em> and trying to have opinions. Now goes by
+        Yasiin Bey.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">mosdef</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge green">4-star</div>
+      <div class="year">Stockholm/London · 1986 — present</div>
+      <h4>Neneh Cherry</h4>
+      <span class="genre">hip-hop · trip-hop</span>
+      <p class="bio">
+        <em>"Buffalo Stance"</em> (1988) was one of the first hip-hop singles to truly cross over in the UK.
+        Stepdaughter of jazz trumpeter Don Cherry. She had basically vanished from radio by 2002, which is
+        probably why she was in the sample batch.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">neneh cherry</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge blue">4-star</div>
+      <div class="year">Memphis / Austin · 1923 — 1992 / 1954 — 1990</div>
+      <h4>Albert King with Stevie Ray Vaughan</h4>
+      <span class="genre">blues</span>
+      <p class="bio">
+        The <em>In Session</em> recording. A blues summit: the left-handed Flying V patriarch and the
+        Austin prodigy. By 2002 both men had been dead for over a decade. I was very into sad guitar music.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">albert king with stevie ray vaughan</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge pink">errors</div>
+      <div class="year">England · 1967 — present</div>
+      <h4>Jethro Tull</h4>
+      <span class="genre">prog rock · folk rock</span>
+      <p class="bio">
+        Ian Anderson on flute, standing on one leg. A flute prog-rock band — in 2002, already a bit of a
+        punchline, but the deep-cuts still rule. Jeffster tried to grab twelve tracks and
+        <em>nine of them failed</em>. The deeper the cut, the worse the search.
+      </p>
+      <div class="source">
+        <strong>source:</strong> errors.csv (12 attempts, mostly 0/xxx)
+        <span class="snip">Lick Your Fingers Clean,Jethro Tull,,0</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge green">errors</div>
+      <div class="year">Bay Area · 1979 — present</div>
+      <h4>Faith No More</h4>
+      <span class="genre">alt-metal · funk-metal</span>
+      <p class="bio">
+        Mike Patton's band. <em>"Epic"</em> (1989) made them MTV regulars; <em>Angel Dust</em> (1992) made them
+        weird. The two queued tracks ("This Guy's In Love With You" and "I Want Forget You") both failed to
+        download — probably the wrong capitalization killed the search.
+      </p>
+      <div class="source">
+        <strong>source:</strong> errors.csv (both tracks failed)
+        <span class="snip">I Want Forget You,Faith No More,,0</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge blue">4-star</div>
+      <div class="year">Toronto · 1985 — 2008</div>
+      <h4>Jeff Healey Band</h4>
+      <span class="genre">blues-rock</span>
+      <p class="bio">
+        Canadian blues guitarist who played with the guitar flat across his lap. The theme-song bar band in the
+        1989 Swayze movie <em>Road House</em>. Died too young in 2008.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">jeff healey band</span>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="badge pink">4-star</div>
+      <div class="year">Florida · 1955 — present</div>
+      <h4>Cannonball Adderley Quintet</h4>
+      <span class="genre">hard bop · soul jazz</span>
+      <p class="bio">
+        Alto sax. <em>"Mercy, Mercy, Mercy"</em> (1967) and a career playing with Miles Davis on <em>Kind of Blue</em>.
+        Quintet includes his brother Nat on cornet. Me putting this in the sample batch is the tell that I was
+        trying to seem cooler than I was.
+      </p>
+      <div class="source">
+        <strong>source:</strong> sampleArtist.txt
+        <span class="snip">cannonball adderley quintet</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p>
+    The full sample batch had 32 artists. Other cameos include <em>Ned's Atomic Dustbin</em>,
+    <em>Spooky Tooth</em>, <em>Peter Himmelman</em>, <em>The Traveling Wilburys</em>, <em>Gerard Joling</em>,
+    <em>Shankar Mahadevan</em>, and (surprisingly) <em>Steven Curtis Chapman</em>. The queue was not especially
+    internally consistent. It was the queue of someone trying to find out what they liked.
+  </p>
+
+  <div class="callout ghost">
+    <div class="tag">★ The errors.csv honor roll</div>
+    <code class="inline">errors.csv</code> is a 46-line confession: every track Jeffster searched for and couldn't
+    get a usable result. Alongside the Pink and Jethro Tull misses, it contains a full classical guitar recital
+    by Jani Potter (Heitor Villa-Lobos, Joan Tower, Ravel, Bach BMV 996 four-movement suite) — none of which
+    Audiogalaxy had. Some queries were just never going to work. That's on me, not Jeffster.
+  </div>
 </section>
 
 <!-- ========================================================= -->
 <section id="shame">
-  <div class="eyebrow">Section 07 &nbsp;&middot;&nbsp; The wall of shame</div>
+  <div class="eyebrow">Section 09 &nbsp;&middot;&nbsp; The wall of shame</div>
   <h2>Things 21-year-old me did that deserve to be remembered.</h2>
   <p>
     With great affection and the full benefit of 24 years of hindsight. None of these were wrong, exactly —
@@ -1277,7 +1958,7 @@ pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt
 
 <!-- ========================================================= -->
 <section id="epilogue" class="epilogue">
-  <div class="eyebrow">Section 08 &nbsp;&middot;&nbsp; Epilogue</div>
+  <div class="eyebrow">Section 10 &nbsp;&middot;&nbsp; Epilogue</div>
   <h2>What happened next.</h2>
   <p>
     <em>May 24, 2002.</em> The RIAA filed suit against Audiogalaxy. By June they had settled; by the end of the
