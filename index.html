@@ -539,6 +539,32 @@
   /* Selection */
   ::selection { background: var(--accent-3); color: var(--bg); }
 
+  /* ==== DEMO GIF FRAME ==== */
+  figure.demo-frame {
+    margin: 32px 0;
+    background: #15131f;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 6px 6px 0 var(--ink);
+    overflow: hidden;
+  }
+  figure.demo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: auto;
+  }
+  figure.demo-frame figcaption {
+    padding: 14px 20px;
+    background: #fffaef;
+    border-top: 1.5px solid var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
   /* ==== RECONSTRUCTED 2002 UI ==== */
   .browser-chrome {
     margin: 40px 0;
@@ -1370,6 +1396,26 @@
     <span class="k">else</span> { <span class="k">goto</span> beginDownload; }    <span class="c"># START WORK</span>
 }</pre>
     <figcaption>Three <code>goto</code>s, three labels, no <code>while</code> loop. This is how state machines looked before anyone told me about state machines.</figcaption>
+  </figure>
+
+  <h3>What it actually felt like to use</h3>
+  <p>
+    Below is a faithful reconstruction of the terminal session — three artists picked at random from
+    <code class="inline">masterArtistList.csv</code> (Love, Mantronix, Ween), each with real album titles
+    that <em>would</em> have come back from FreeDB in 2002. The user types an artist string, gets sixteen
+    matching album rows back, queues the ones they want, presses <code class="inline">A</code> to move on,
+    then presses <code class="inline">D</code> to start downloading. Compressed to ~28 seconds; in real life
+    each "Listing results" page took 20&ndash;30 seconds to render because the script
+    <em>opens a second HTTP request to FreeDB for each of the sixteen rows</em> just to count tracks.
+  </p>
+
+  <figure class="demo-frame">
+    <img src="jeffster-demo.gif" alt="Animated GIF: Jeffster.pl terminal session — searching FreeDB for Love, Mantronix, and Ween, picking four albums, pressing D to download, then watching the ranked Audiogalaxy enqueue output stream by.">
+    <figcaption>
+      One full session: three artists, four albums, four bang-prefixed incomplete-album folders on the way to
+      <code class="inline">G:\MP3s\</code>. The red <code>**** JUST ADDED *****</code> is how the script tells you
+      it remembered what you typed last.
+    </figcaption>
   </figure>
 
   <!-- SAMPLE ARTIST -->
