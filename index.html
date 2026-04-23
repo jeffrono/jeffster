@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeffster.pl — An Archaeological Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff8ec;
+    --bg-2: #fdf1d6;
+    --bg-3: #ffe8b8;
+    --ink: #15131f;
+    --ink-dim: #4a4553;
+    --ink-faded: #8a8396;
+    --accent: #00a35b;
+    --accent-2: #e5187e;
+    --accent-3: #f27400;
+    --accent-4: #1766ff;
+    --rule: #2a2238;
+    --code-bg: #1b1426;
+    --code-ink: #f4ecde;
+    --warn: #d81e1e;
+    --link: #1766ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 15% -5%, rgba(229, 24, 126, 0.18), transparent 45%),
+      radial-gradient(ellipse at 90% 10%, rgba(242, 116, 0, 0.18), transparent 45%),
+      radial-gradient(ellipse at 80% 100%, rgba(0, 163, 91, 0.12), transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(23, 102, 255, 0.10), transparent 50%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0;
+  }
+
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 48px 32px 48px 40px;
+    border-right: 1.5px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  aside.toc .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  aside.toc .brand .dot { color: var(--accent); }
+  aside.toc .sub {
+    color: var(--ink-faded);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  aside.toc ol {
+    list-style: none;
+    counter-reset: toc;
+  }
+  aside.toc li {
+    counter-increment: toc;
+    margin-bottom: 10px;
+  }
+  aside.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    margin-left: -14px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  aside.toc a::before {
+    content: counter(toc, decimal-leading-zero) "  ";
+    color: var(--accent-2);
+    font-weight: 700;
+  }
+  aside.toc a:hover {
+    color: var(--accent-2);
+    border-left-color: var(--accent-2);
+    background: #ffe2ef;
+  }
+
+  main {
+    padding: 64px 72px 120px;
+    max-width: 880px;
+  }
+
+  /* ==== HERO ==== */
+  .hero {
+    padding: 40px 0 80px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 72px;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 32px;
+    font-variation-settings: "opsz" 144;
+  }
+  .hero h1 .flicker {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .hero .lede {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 620px;
+    margin-bottom: 40px;
+  }
+  .hero .lede em {
+    color: var(--accent-2);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-top: 32px;
+    border-top: 1px dashed var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .meta-grid .k {
+    color: var(--ink-faded);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta-grid .v { color: var(--ink); font-size: 14px; }
+
+  /* ==== SECTIONS ==== */
+  section {
+    margin-bottom: 96px;
+    scroll-margin-top: 40px;
+  }
+  section .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  section .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 144;
+  }
+  section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 40px 0 16px;
+    letter-spacing: -0.01em;
+  }
+  section h3 .file {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 400;
+    margin-left: 12px;
+    letter-spacing: 0;
+  }
+  section p {
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  section p + p { margin-top: -4px; }
+
+  section ul, section ol {
+    margin: 16px 0 24px 24px;
+    color: var(--ink);
+  }
+  section li { margin-bottom: 8px; }
+
+  /* ==== CODE ==== */
+  figure.code {
+    margin: 28px 0;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  figure.code header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    background: #281c38;
+    border-bottom: 1px solid #3a2c4f;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  figure.code header .fname { color: #8cff9e; }
+  figure.code header .meta { color: #b8a8cc; font-size: 11px; }
+  figure.code pre {
+    padding: 20px 24px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--code-ink);
+  }
+  figure.code figcaption {
+    padding: 12px 20px;
+    background: #fffaef;
+    border-top: 1px solid #e9dfc4;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #4a4553;
+  }
+
+  /* Perl-ish syntax highlighting — tuned for dark code panel on light page */
+  .k { color: #ff7bc7; }       /* keywords: if, while, sub, use */
+  .s { color: #8cff9e; }       /* strings */
+  .c { color: #9e8fb0; font-style: italic; } /* comments */
+  .v { color: #ffd166; }       /* $vars / @vars */
+  .re { color: #9cc8ff; }      /* regexes */
+  .n { color: #ff9e6b; }       /* numbers or special */
+  .o { color: #f4ecde; }       /* operators */
+
+  /* inline code */
+  code.inline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    background: #15131f;
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: #8cff9e;
+    border: 1px solid #15131f;
+  }
+
+  /* ==== CALLOUTS ==== */
+  .callout {
+    margin: 32px 0;
+    padding: 24px 28px;
+    border-left: 4px solid var(--accent-2);
+    background: #ffe2ef;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .callout.warn {
+    border-left-color: var(--warn);
+    background: #ffd9d9;
+  }
+  .callout.warn .tag { color: var(--warn); }
+  .callout.ghost {
+    border-left-color: var(--accent-3);
+    background: #ffe9cc;
+  }
+  .callout.ghost .tag { color: var(--accent-3); }
+
+  /* ==== ARCHITECTURE DIAGRAM ==== */
+  .diagram {
+    margin: 40px 0;
+    padding: 32px;
+    background: #ffffff;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .diagram svg { width: 100%; height: auto; display: block; }
+
+  /* ==== ARTIFACT CARDS ==== */
+  .artifacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .artifact {
+    background: #ffffff;
+    border: 1.5px solid var(--ink);
+    padding: 20px 22px;
+    border-radius: 6px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .artifact:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .artifact .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    word-break: break-all;
+    font-weight: 600;
+  }
+  .artifact .desc {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  /* ==== SERVICE PROFILE ==== */
+  .services {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .service {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    align-items: start;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .service .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .service:nth-child(1) .logo { color: var(--accent-2); }
+  .service:nth-child(2) .logo { color: var(--accent-3); }
+  .service:nth-child(3) .logo { color: var(--accent-4); }
+  .service .logo .sub {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 400;
+  }
+  .service .body h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .service .body p {
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .service .body .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  /* ==== WALL OF SHAME ==== */
+  .shame-list {
+    list-style: none;
+    margin: 32px 0 0 0;
+    padding: 0;
+    counter-reset: shame;
+  }
+  .shame-list li {
+    counter-increment: shame;
+    padding: 28px 0;
+    border-top: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+  }
+  .shame-list li:last-child { border-bottom: 1.5px solid var(--ink); }
+  .shame-list li::before {
+    content: counter(shame, decimal-leading-zero);
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: var(--accent-2);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .shame-list .crime {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .shame-list .details {
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  /* ==== EPILOGUE ==== */
+  .epilogue {
+    margin: 80px 0 0;
+    padding: 48px 40px;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #fff1c9, #ffe0b4 50%, #ffc9de);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .epilogue h2 { margin-bottom: 20px; }
+  .epilogue p {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .epilogue p em { color: var(--accent-2); font-weight: 600; }
+
+  footer.page-foot {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px dashed var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ==== DECORATIVE ==== */
+  .pull {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 40px 0;
+    padding: 32px 36px;
+    background: #fff9dc;
+    border: 1.5px solid var(--ink);
+    border-left: 8px solid var(--accent-3);
+    color: var(--ink);
+    font-style: italic;
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .pull .attr {
+    display: block;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+  }
+
+  /* ==== MOBILE ==== */
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    aside.toc {
+      position: static;
+      height: auto;
+      padding: 32px 24px;
+      border-right: none;
+      border-bottom: 2px solid var(--ink);
+    }
+    main { padding: 40px 24px 80px; }
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+    .service { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+  }
+
+  /* Selection */
+  ::selection { background: var(--accent-3); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<aside class="toc">
+  <div class="brand">jeffster<span class="dot">.</span></div>
+  <div class="sub">an archaeological report</div>
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#services">The three dead services</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#artifacts">Files &amp; artifacts</a></li>
+    <li><a href="#scripts">The scripts, annotated</a></li>
+    <li><a href="#formats">Invented data formats</a></li>
+    <li><a href="#shame">The wall of shame</a></li>
+    <li><a href="#epilogue">What happened next</a></li>
+  </ol>
+</aside>
+
+<main>
+
+<header class="hero">
+  <div class="eyebrow">// dispatch from 2002 &nbsp;&nbsp;|&nbsp;&nbsp; perl 5.6 &nbsp;&nbsp;|&nbsp;&nbsp; windows xp</div>
+  <h1>Jeffster<span class="flicker">.pl</span><br>an archaeological report.</h1>
+  <p class="lede">
+    A reverse-engineered field guide to the <em>2,400 lines of Perl</em> a 21-year-old wrote in early 2002
+    to automate the wholesale scraping of <em>Audiogalaxy</em>. It orchestrated three now-defunct services, invented
+    its own file formats, and committed almost every sin in <em>The Perl Cookbook</em>. This is what it did, and
+    how it did it.
+  </p>
+  <div class="meta-grid">
+    <div><div class="k">Authored</div><div class="v">Mar 2002</div></div>
+    <div><div class="k">Language</div><div class="v">Perl 5.6 + .bat</div></div>
+    <div><div class="k">Scripts</div><div class="v">5 + 1 support</div></div>
+    <div><div class="k">Status</div><div class="v">DEFUNCT</div></div>
+  </div>
+</header>
+
+<!-- ========================================================= -->
+<section id="overview">
+  <div class="eyebrow">Section 01 &nbsp;&middot;&nbsp; Overview</div>
+  <h2>What this thing actually was.</h2>
+  <p>
+    <strong>Jeffster</strong> is a pipeline of five Perl scripts that automated music piracy in
+    early 2002 — specifically, it turned a <em>plain-text list of artist names</em> into an organised library of MP3s
+    sitting in correctly-named folders on a Windows drive.
+  </p>
+  <p>
+    It did this by stringing together three separate web services that had <em>no idea</em> they were being strung together:
+    <strong>CDnow</strong> for discographies, <strong>FreeDB</strong> for CD tracklistings, and
+    <strong>Audiogalaxy</strong> for the peer-to-peer downloads themselves. The glue was
+    <code class="inline">LWP::Simple</code>, a thicket of regex, and four text files that doubled as both state-store
+    and inter-process message queue.
+  </p>
+
+  <div class="callout ghost">
+    <div class="tag">★ Context</div>
+    There was no Spotify. There was no Apple Music. iTunes had just launched (January 2001). Napster had been shut down
+    nine months earlier. This script was built in the <em>nine-month window</em> between Napster's death in July 2001
+    and Audiogalaxy's death in June 2002.
+  </div>
+
+  <p class="pull">
+    "You give me a text file of 800 artist names. I'll give you back a Windows drive full of albums."
+    <span class="attr">— The Jeffster value proposition, circa March 2002</span>
+  </p>
+</section>
+
+<!-- ========================================================= -->
+<section id="services">
+  <div class="eyebrow">Section 02 &nbsp;&middot;&nbsp; Cast of the dead</div>
+  <h2>The three services it glued together.</h2>
+  <p>
+    Every single external service this script talks to has been dead for at least 20 years. This is what they were,
+    and what they did for us.
+  </p>
+
+  <div class="services">
+
+    <div class="service">
+      <div class="logo">Audiogalaxy<span class="sub">1998 — 2002</span></div>
+      <div class="body">
+        <h4>The peer-to-peer download engine.</h4>
+        <p>
+          A P2P music service with a genuinely novel architecture: a client-side "Satellite" daemon managed local
+          transfers, and a central web interface orchestrated the queue. Crucially, you could <em>enqueue songs via
+          plain old HTTP GETs</em> against <code class="inline">audiogalaxy.com/satellite/queue.php</code> as long
+          as you included your session ID. Which is exactly what made Jeffster possible.
+        </p>
+        <p>
+          The RIAA sued them in May 2002. By June, they had settled and effectively shut down. Jeffster's useful
+          life therefore clocks in at <em>roughly three months</em>.
+        </p>
+        <div class="role">Jeffster's role for it: Scrape + enqueue via HTTP</div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="logo">CDnow<span class="sub">1994 — 2002</span></div>
+      <div class="body">
+        <h4>The discography source.</h4>
+        <p>
+          An online music retailer (think: pre-iTunes Amazon for CDs). Jeffster only cared about two of its
+          pages: the <em>artist search</em> endpoint and the <em>discography</em> page, both of which it scraped
+          by regex to get canonical album titles and tracklists.
+        </p>
+        <p>
+          Amazon absorbed CDnow in 2002 and folded the brand in 2003. The URLs in this codebase
+          (<code class="inline">cgi-bin/mserver/SID=1188262721/pagename=/RP/CDN/FIND/…</code>) haven't resolved since.
+        </p>
+        <div class="role">Jeffster's role for it: Scrape for album + track metadata</div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="logo">FreeDB<span class="sub">1999 — ~2020</span></div>
+      <div class="body">
+        <h4>The tracklist fallback.</h4>
+        <p>
+          The open-source CD database — the thing that filled in track names when you inserted a CD into Winamp.
+          The interactive version of Jeffster (<code class="inline">Jeffster.pl</code>) queried FreeDB directly
+          so the user could pick the specific album release they wanted.
+        </p>
+        <div class="role">Jeffster's role for it: Album picker backend</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<section id="architecture">
+  <div class="eyebrow">Section 03 &nbsp;&middot;&nbsp; Diagram</div>
+  <h2>How the whole machine fit together.</h2>
+  <p>
+    Three web services, five Perl scripts, four text files, and one very patient Windows XP tower running with
+    <code class="inline">G:\shared\</code> as an Audiogalaxy Satellite download target.
+  </p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" aria-label="Jeffster architecture diagram">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#00a35b"/>
+        </marker>
+        <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#e5187e"/>
+        </marker>
+      </defs>
+      <style>
+        .box { fill: #ffffff; stroke: #15131f; stroke-width: 1.5; }
+        .box-web { fill: #fff7df; stroke: #f27400; stroke-width: 2; }
+        .box-disk { fill: #e8efff; stroke: #1766ff; stroke-width: 2; }
+        .box-script { fill: #e4fbef; stroke: #00a35b; stroke-width: 2; }
+        .t  { fill: #15131f; font: 600 13px 'JetBrains Mono',monospace; }
+        .ts { fill: #4a4553; font: 400 11px 'JetBrains Mono',monospace; }
+        .tt { fill: #e5187e; font: 700 11px 'JetBrains Mono',monospace; }
+        .line-g { stroke: #00a35b; stroke-width: 1.75; fill: none; }
+        .line-p { stroke: #e5187e; stroke-width: 1.75; fill: none; stroke-dasharray: 4 3; }
+      </style>
+
+      <!-- Web services (top) -->
+      <g>
+        <rect class="box box-web" x="40"  y="30" width="180" height="60" rx="4"/>
+        <text class="t"  x="130" y="58" text-anchor="middle">CDnow</text>
+        <text class="ts" x="130" y="76" text-anchor="middle">discographies</text>
+
+        <rect class="box box-web" x="300" y="30" width="200" height="60" rx="4"/>
+        <text class="t"  x="400" y="58" text-anchor="middle">Audiogalaxy</text>
+        <text class="ts" x="400" y="76" text-anchor="middle">search + enqueue</text>
+
+        <rect class="box box-web" x="580" y="30" width="180" height="60" rx="4"/>
+        <text class="t"  x="670" y="58" text-anchor="middle">FreeDB</text>
+        <text class="ts" x="670" y="76" text-anchor="middle">CD tracklists</text>
+
+        <text class="tt" x="400" y="18" text-anchor="middle">═══ THREE WEB SERVICES ═══</text>
+      </g>
+
+      <!-- Scripts (middle) -->
+      <g>
+        <rect class="box box-script" x="30"  y="170" width="150" height="60" rx="4"/>
+        <text class="t"  x="105" y="198" text-anchor="middle">jeffster1.2.pl</text>
+        <text class="ts" x="105" y="216" text-anchor="middle">batch: artistList.txt</text>
+
+        <rect class="box box-script" x="200" y="170" width="150" height="60" rx="4"/>
+        <text class="t"  x="275" y="198" text-anchor="middle">Jeffster.pl</text>
+        <text class="ts" x="275" y="216" text-anchor="middle">interactive picker</text>
+
+        <rect class="box box-script" x="370" y="170" width="150" height="60" rx="4"/>
+        <text class="t"  x="445" y="198" text-anchor="middle">SampleArtist.pl</text>
+        <text class="ts" x="445" y="216" text-anchor="middle">N songs per artist</text>
+
+        <rect class="box box-script" x="540" y="170" width="150" height="60" rx="4"/>
+        <text class="t"  x="615" y="198" text-anchor="middle">songList.pl</text>
+        <text class="ts" x="615" y="216" text-anchor="middle">raw song list</text>
+
+        <text class="tt" x="400" y="158" text-anchor="middle">═══ ENQUEUE SCRIPTS ═══</text>
+      </g>
+
+      <!-- Config + Queue files -->
+      <g>
+        <rect class="box box-disk" x="30"  y="290" width="180" height="60" rx="4"/>
+        <text class="t"  x="120" y="318" text-anchor="middle">Queue.txt</text>
+        <text class="ts" x="120" y="336" text-anchor="middle">filename &lt;s&gt; path &lt;d&gt;</text>
+
+        <rect class="box box-disk" x="240" y="290" width="160" height="60" rx="4"/>
+        <text class="t"  x="320" y="318" text-anchor="middle">Config.txt</text>
+        <text class="ts" x="320" y="336" text-anchor="middle">paths + SID</text>
+
+        <rect class="box box-disk" x="430" y="290" width="160" height="60" rx="4"/>
+        <text class="t"  x="510" y="318" text-anchor="middle">errors.csv</text>
+        <text class="ts" x="510" y="336" text-anchor="middle">songs not found</text>
+
+        <rect class="box box-disk" x="620" y="290" width="150" height="60" rx="4"/>
+        <text class="t"  x="695" y="318" text-anchor="middle">*.m3u</text>
+        <text class="ts" x="695" y="336" text-anchor="middle">per-album playlist</text>
+      </g>
+
+      <!-- FileSync + disk -->
+      <g>
+        <rect class="box box-script" x="150" y="410" width="220" height="60" rx="4"/>
+        <text class="t"  x="260" y="438" text-anchor="middle">FileSync.pl</text>
+        <text class="ts" x="260" y="456" text-anchor="middle">move G:\shared → G:\MP3s</text>
+
+        <rect class="box box-disk" x="430" y="410" width="240" height="60" rx="4"/>
+        <text class="t"  x="550" y="438" text-anchor="middle">G:\MP3s\!Artist - Album\</text>
+        <text class="ts" x="550" y="456" text-anchor="middle">final organised library</text>
+      </g>
+
+      <!-- connections: scripts -> web -->
+      <line class="line-g" x1="105" y1="170" x2="130"  y2="90"  marker-end="url(#arrow)"/>
+      <line class="line-g" x1="275" y1="170" x2="400"  y2="90"  marker-end="url(#arrow)"/>
+      <line class="line-g" x1="445" y1="170" x2="400"  y2="90"  marker-end="url(#arrow)"/>
+      <line class="line-g" x1="615" y1="170" x2="400"  y2="90"  marker-end="url(#arrow)"/>
+      <line class="line-g" x1="275" y1="170" x2="670"  y2="90"  marker-end="url(#arrow)"/>
+
+      <!-- scripts -> queue.txt -->
+      <line class="line-p" x1="105" y1="230" x2="115" y2="290" marker-end="url(#arrow2)"/>
+      <line class="line-p" x1="275" y1="230" x2="120" y2="290" marker-end="url(#arrow2)"/>
+      <line class="line-p" x1="445" y1="230" x2="120" y2="290" marker-end="url(#arrow2)"/>
+      <line class="line-p" x1="615" y1="230" x2="125" y2="290" marker-end="url(#arrow2)"/>
+
+      <!-- queue -> filesync -->
+      <line class="line-p" x1="120" y1="350" x2="230" y2="410" marker-end="url(#arrow2)"/>
+
+      <!-- filesync -> disk -->
+      <line class="line-g" x1="370" y1="440" x2="430" y2="440" marker-end="url(#arrow)"/>
+
+      <!-- legend -->
+      <g transform="translate(40, 490)">
+        <line class="line-g" x1="0"  y1="5" x2="30" y2="5"/>
+        <text class="ts" x="38" y="9">HTTP scrape</text>
+        <line class="line-p" x1="140" y1="5" x2="170" y2="5"/>
+        <text class="ts" x="178" y="9">disk read/write</text>
+      </g>
+    </svg>
+  </div>
+
+  <p>
+    Note the crucial detail: the five scripts don't talk to each other. They communicate entirely through
+    <code class="inline">Queue.txt</code>, which is read by <code class="inline">FileSync.pl</code> in an
+    entirely separate process. The text file <em>is</em> the message bus.
+  </p>
+</section>
+
+<!-- ========================================================= -->
+<section id="artifacts">
+  <div class="eyebrow">Section 04 &nbsp;&middot;&nbsp; Inventory</div>
+  <h2>Everything on disk, explained.</h2>
+  <p>
+    A complete tour of every file in the project directory, in the order you'd encounter them.
+  </p>
+
+  <div class="artifacts">
+    <div class="artifact">
+      <div class="name">Config.txt</div>
+      <div class="desc">Five key-value lines: home dir, destination, download dir, Audiogalaxy SID, sample count.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">jeffster1.2.pl</div>
+      <div class="desc">The batch workhorse. Reads artistList.txt, downloads entire discographies from CDnow, enqueues every song.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">Jeffster.pl</div>
+      <div class="desc">The newer interactive version. User types an artist; script queries FreeDB; user picks albums; script downloads.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">SampleArtist.pl</div>
+      <div class="desc">Enqueues the top-N highest-rated tracks for every artist in sampleArtist.txt. Auditioning mode.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">songList.pl</div>
+      <div class="desc">Reads c:\songList.txt, a raw list of song titles, and enqueues each one without any artist context.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">FileSync.pl</div>
+      <div class="desc">Cleanup crew. Moves completed downloads from G:\shared\ into the correct G:\MP3s\Artist\Album\ folders.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">Queue.txt</div>
+      <div class="desc">The state-of-the-world: every enqueued-but-not-yet-filed MP3, with its expected destination path.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">albumList.txt</div>
+      <div class="desc">The input queue for Jeffster.pl — FreeDB URL + album + artist, one per line, custom &lt; delimiters.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">sampleArtist.txt</div>
+      <div class="desc">A plain list of artist names, one per line. The input queue for SampleArtist.pl.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">masterArtistList.csv</div>
+      <div class="desc">A 240KB cache of ~12,000 Audiogalaxy artist IDs paired with popularity rank. Seed data for the web UI.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">errors.csv</div>
+      <div class="desc">Songs that couldn't be found, or found only as a 1-star result. Format: song,artist,album,code.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">webpage/</div>
+      <div class="desc">A frameset-based HTML UI generated by turnIntoHTML.pl. Top 200 artists as direct Audiogalaxy links.</div>
+    </div>
+    <div class="artifact">
+      <div class="name">jsterupdate.bat</div>
+      <div class="desc">The build system: four perl2exe calls that compile each .pl into a standalone Windows .exe.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<section id="scripts">
+  <div class="eyebrow">Section 05 &nbsp;&middot;&nbsp; Scripts, annotated</div>
+  <h2>The five scripts, walked through.</h2>
+
+  <!-- JEFFSTER 1.2 -->
+  <h3>The batch workhorse <span class="file">// jeffster1.2.pl</span></h3>
+  <p>
+    The oldest, ugliest, and most capable script. Given <code class="inline">artistList.txt</code> containing
+    one artist per line (optionally <code class="inline">Artist &gt; Album</code> to narrow it), it:
+  </p>
+  <ol>
+    <li>Pops the top line off <code class="inline">artistList.txt</code>.</li>
+    <li>Hits CDnow to resolve the canonical artist name (and tries again if CDnow's spelling doesn't match).</li>
+    <li>Pulls the full discography page and regex-extracts every album URL.</li>
+    <li>For each album, pulls the tracklist and populates a 2-D array indexed by album and track.</li>
+    <li>For every track, searches Audiogalaxy for the best available source and enqueues it.</li>
+    <li>Writes an .m3u playlist and appends to Queue.txt.</li>
+  </ol>
+
+  <p>The heart of it is <code class="inline">enqueueSong</code>, which does a ranking dance based on the number
+     of "bars" Audiogalaxy assigned to each search result (<code class="inline">4_0.gif</code> = 4 bars, best):</p>
+
+  <figure class="code">
+    <header><span class="fname">jeffster1.2.pl</span><span class="meta">// the ranking ladder, lines 109–131</span></header>
+<pre><span class="c"># choose the best ranking song from the list of search results</span>
+<span class="k">if</span> (<span class="re">/4_0.gif[^\?]+\?SID=$SID&amp;g=([\d]+)/</span>) {
+    <span class="v">$songID</span> = <span class="v">$1</span>;
+    <span class="v">$errorMark</span> = <span class="n">4</span>;
+}
+<span class="k">elsif</span> (<span class="re">/3_0.gif[^\?]+\?SID=$SID&amp;g=([\d]+)/</span>) {
+    <span class="v">$songID</span> = <span class="v">$1</span>;
+    <span class="v">$errorMark</span> = <span class="n">3</span>;
+}
+<span class="k">elsif</span> (<span class="re">/2_0.gif[^\?]+\?SID=$SID&amp;g=([\d]+)/</span>) {
+    <span class="v">$songID</span> = <span class="v">$1</span>;
+    <span class="v">$errorMark</span> = <span class="n">2</span>;
+}
+<span class="k">elsif</span>(<span class="k">length</span>(<span class="v">$_</span>) != <span class="n">0</span>) {
+    <span class="c"># ...record the failure in errors.csv and give up</span>
+    <span class="v">$errorMark</span> = <span class="n">1</span>;
+}</pre>
+    <figcaption>A ladder of almost-identical regexes, because the decision couldn't be bothered to parameterize.</figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="tag">⚠ Also featured in jeffster1.2.pl</div>
+    The immortal comment on line 19: <code class="inline">// FIX THIS SHIT #333333"&gt;&lt;B&gt;&lt;B&gt;White Stripes&amp;n</code> —
+    a note-to-self left in production after CDnow returned bolded artist names in a format the regex didn't anticipate.
+    Three years later, nobody fixed it.
+  </div>
+
+  <!-- JEFFSTER (NEWER) -->
+  <h3>The interactive picker <span class="file">// Jeffster.pl</span></h3>
+  <p>
+    A nicer, FreeDB-backed UX. You type an artist, it shows you paginated albums with their track counts, and
+    you can build up a queue interactively by typing numbers. When you type <code class="inline">D</code>, it
+    stops asking and starts downloading.
+  </p>
+  <p>
+    The UX is entirely implemented with <code class="inline">&lt;STDIN&gt;</code>, <code class="inline">chomp</code>,
+    and — critically — <code class="inline">goto</code> labels:
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">Jeffster.pl</span><span class="meta">// the goto-driven state machine, lines 3–73</span></header>
+<pre>beginning: {
+    <span class="v">$offset</span> = <span class="n">1</span>;
+    <span class="k">print</span> <span class="s">"\nPlease enter artist name,\n...OR press D to begin downloading albums: "</span>;
+    <span class="v">$prompt</span> = &lt;STDIN&gt;;
+    <span class="k">chomp</span>(<span class="v">$prompt</span>);
+
+    <span class="k">if</span> (<span class="v">$prompt</span> <span class="k">ne</span> <span class="s">"D"</span> &amp;&amp; <span class="v">$prompt</span> <span class="k">ne</span> <span class="s">"d"</span>) {
+        <span class="c"># ...search FreeDB...</span>
+
+        displayTitles: {
+            <span class="c"># ...print 15 results...</span>
+            <span class="v">$prompt</span> = &lt;STDIN&gt;;
+            <span class="k">chomp</span>(<span class="v">$prompt</span>);
+        }
+
+        <span class="k">if</span> (<span class="v">$prompt</span> <span class="k">eq</span> <span class="s">""</span> &amp;&amp; <span class="v">$offset</span> &lt; <span class="v">$i</span>-<span class="n">15</span>) {
+            <span class="v">$offset</span> += <span class="n">15</span>;
+            <span class="k">goto</span> displayTitles;          <span class="c"># NEXT PAGE</span>
+        }
+        <span class="k">elsif</span> (<span class="v">$prompt</span> =~ <span class="re">/\d/</span>) {
+            <span class="c"># ...queue the album...</span>
+            <span class="k">goto</span> displayTitles;          <span class="c"># KEEP PICKING</span>
+        }
+        <span class="k">elsif</span> (<span class="v">$prompt</span> <span class="k">eq</span> <span class="s">"A"</span> || <span class="v">$prompt</span> <span class="k">eq</span> <span class="s">"a"</span>) {
+            <span class="k">goto</span> beginning;              <span class="c"># NEW ARTIST</span>
+        }
+    }
+    <span class="k">else</span> { <span class="k">goto</span> beginDownload; }    <span class="c"># START WORK</span>
+}</pre>
+    <figcaption>Three <code>goto</code>s, three labels, no <code>while</code> loop. This is how state machines looked before anyone told me about state machines.</figcaption>
+  </figure>
+
+  <!-- SAMPLE ARTIST -->
+  <h3>The sampler <span class="file">// SampleArtist.pl</span></h3>
+  <p>
+    Take a list of artists. For each one, enqueue the <code class="inline">$sampleNumber</code> highest-rated
+    tracks Audiogalaxy knows about. It's the 2002 version of "Artist Radio."
+  </p>
+  <p>
+    Its cleverest trick: deduplication. Before enqueueing a track, it greps <code class="inline">Queue.txt</code>
+    for a fuzzy match on the song name (using the song title's first five characters plus the separator)
+    so the same song doesn't get queued twice from two different sampling passes.
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">SampleArtist.pl</span><span class="meta">// fuzzy dedup against Queue.txt, lines 85–93</span></header>
+<pre><span class="v">$dontEnqueue</span> = <span class="n">0</span>;
+<span class="k">open</span>(CHECK, <span class="s">"&lt;"</span> . <span class="v">$directory</span> . <span class="s">"Queue.txt"</span>);
+<span class="k">while</span> (&lt;CHECK&gt;) {
+    <span class="k">if</span> (<span class="re">/$songCheck2/</span>) {
+        <span class="v">$dontEnqueue</span> = <span class="n">1</span>;
+        <span class="k">print</span> <span class="s">"Duplicate found for: </span><span class="v">$MP3Title</span><span class="s">\n"</span>;
+    }
+}
+<span class="k">close</span>(CHECK);</pre>
+    <figcaption>The entire dedup index is a linear scan of Queue.txt, re-opened from disk once per song. O(n²). It worked.</figcaption>
+  </figure>
+
+  <!-- SONGLIST -->
+  <h3>The shopping list <span class="file">// songList.pl</span></h3>
+  <p>
+    The simplest of the bunch. Reads <code class="inline">c:\songList.txt</code> — a hardcoded path, note —
+    one song title per line, and enqueues each. Meant for when a friend handed you a list of songs they wanted.
+  </p>
+
+  <!-- FILESYNC -->
+  <h3>The janitor <span class="file">// FileSync.pl</span></h3>
+  <p>
+    The second-half-of-the-pipeline. While the four enqueue scripts fill up Queue.txt with promises, FileSync
+    actually <em>fulfills</em> them. It reads every line of Queue.txt, scans the Audiogalaxy download folder
+    (<code class="inline">G:\shared\</code>), and for every filename match it finds, it moves the file to its
+    proper Artist/Album folder.
+  </p>
+  <p>
+    The beautiful part: the convention for "album complete" is just the presence of an exclamation mark at the
+    start of the album folder name.
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">FileSync.pl</span><span class="meta">// the bang-prefix completion protocol, lines 47–58</span></header>
+<pre><span class="c"># if complete (no other queued files belong to this album)</span>
+<span class="k">if</span> (<span class="v">$albumMarker</span> == <span class="n">0</span>) {
+
+    <span class="c"># if not sample artist</span>
+    <span class="k">if</span> (<span class="v">$tempPath</span> =~ <span class="re">/!/</span>) {
+        <span class="v">$tempPath1</span> = <span class="v">$tempPath</span>;
+        <span class="v">$tempPath</span> =~ <span class="re">s/!//</span>;
+        <span class="k">rename</span>(<span class="v">$tempPath1</span>, <span class="v">$tempPath</span>);
+        <span class="k">print</span> <span class="s">"completed </span><span class="v">$tempPath</span><span class="s">\n"</span>;
+    }
+
+}</pre>
+    <figcaption>Folders starting with <code>!</code> are incomplete and sort to the top of Explorer. Strip the bang and the album joins the library proper.</figcaption>
+  </figure>
+
+  <!-- WEBPAGE -->
+  <h3>The frameset generator <span class="file">// webpage/turnIntoHTML.pl</span></h3>
+  <p>
+    Takes <code class="inline">masterArtistList.csv</code> — a 240KB cache of ~12,000 Audiogalaxy artists, each
+    with an internal ID and a popularity rank — and emits an HTML file with deep links into Audiogalaxy and CDnow
+    for the top 200 most popular artists. The left frame; the right frame was whichever artist you most recently clicked.
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">webpage/turnIntoHTML.pl</span><span class="meta">// lines 1–38</span></header>
+<pre><span class="k">open</span>(OUT, <span class="s">"&gt;leftFrame.htm"</span>);
+<span class="k">print</span> OUT <span class="s">"&lt;html&gt;&lt;title&gt;Master Artist List -- Jeffster 1.1&lt;/title&gt;&lt;/head&gt;..."</span>;
+<span class="k">close</span>(OUT);
+
+<span class="k">open</span>(IN, <span class="s">"&lt;masterArtistList.csv"</span>);
+<span class="v">$num</span> = <span class="n">0</span>;
+<span class="k">while</span> (&lt;IN&gt;) {
+    <span class="re">/([^,]+),(\d+),(\d+)/</span>;
+    <span class="v">$artist</span> = <span class="v">$1</span>;
+    <span class="v">$ID</span>     = <span class="v">$2</span>;
+    <span class="v">$rank</span>   = <span class="v">$3</span>;
+
+    <span class="k">if</span> (<span class="v">$rank</span> &gt; <span class="n">24</span> &amp;&amp; <span class="v">$num</span> &lt; <span class="n">200</span>) {
+        <span class="v">$num</span>++;
+        <span class="k">open</span>(OUT, <span class="s">"&gt;&gt;leftFrame.htm"</span>);
+        <span class="c"># ...emit &lt;tr&gt; with alternating gray rows, deep links to AG + CDnow...</span>
+    }
+}</pre>
+    <figcaption>Yes, it <code>open</code>s, <code>print</code>s, and <code>close</code>s the output file once per row. 200 opens and 200 closes. Disk cache forgives a lot.</figcaption>
+  </figure>
+</section>
+
+<!-- ========================================================= -->
+<section id="formats">
+  <div class="eyebrow">Section 06 &nbsp;&middot;&nbsp; Homegrown formats</div>
+  <h2>Four file formats I invented on the spot.</h2>
+  <p>
+    I couldn't be bothered with <em>any</em> existing serialization format, so every on-disk data structure is custom.
+    They all work. None of them are good.
+  </p>
+
+  <h3>Config.txt <span class="file">// trailing-hash-delimited KV</span></h3>
+  <figure class="code">
+    <header><span class="fname">Config.txt</span><span class="meta">// the real thing, unaltered</span></header>
+<pre>Home Directory: C:\Jeffster\ #
+Destination Directory: G:\MP3s\ #
+Download Directory: G:\shared\ #
+SID: 307908cbb6fff10bf0083932a95aeb4a #
+Number of Songs: 37 #</pre>
+    <figcaption>Each value is terminated by a literal space-hash-newline so the parser regex can find the end.</figcaption>
+  </figure>
+
+  <figure class="code">
+    <header><span class="fname">configVals sub</span><span class="meta">// the parser</span></header>
+<pre><span class="k">sub</span> configVals {
+    <span class="k">open</span>(CONFIG, <span class="s">"&lt;config.txt"</span>);
+    <span class="k">while</span> (&lt;CONFIG&gt;) {
+        <span class="k">if</span> (<span class="re">/Home Directory: ([\w\W]+) \#/</span>)        { <span class="v">$directory</span>            = <span class="v">$1</span>; }
+        <span class="k">if</span> (<span class="re">/Destination Directory: ([\w\W]+) \#/</span>) { <span class="v">$destinationDirectory</span> = <span class="v">$1</span>; }
+        <span class="k">if</span> (<span class="re">/Download Directory: ([\w\W]+) \#/</span>)    { <span class="v">$downloadDir</span>          = <span class="v">$1</span>; }
+        <span class="k">if</span> (<span class="re">/SID: ([\w\W]+) \#/</span>)                   { <span class="v">$SID</span>                  = <span class="v">$1</span>; }
+    }
+    <span class="k">close</span>(CONFIG);
+}</pre>
+    <figcaption>Note the <code>[\w\W]+</code> — which is just a byte-vomit of "any character at all." <code>.+</code> would have done the same job with fewer keystrokes, but younger-me didn't know <code>.</code> excluded newlines.</figcaption>
+  </figure>
+
+  <h3>Queue.txt <span class="file">// &lt;s&gt; and &lt;d&gt; delimiters</span></h3>
+  <p>
+    The whole download queue is a line-delimited file where each record has two fields separated by the
+    literal string <code class="inline">&lt;s&gt;</code> (start path) and terminated by <code class="inline">&lt;d&gt;</code>
+    (done). No escaping. No quoting. Good luck if a filename contains those substrings.
+  </p>
+
+  <figure class="code">
+    <header><span class="fname">Queue.txt</span><span class="meta">// actual stale entries from 2002</span></header>
+<pre>unburned - Pink Missundaztood 06 18 Wheeler.mp3<span class="v">&lt;s&gt;</span>G:\MP3s\!Pink - Missundaztood (8 of 14)\<span class="v">&lt;d&gt;</span>
+Pink ~ M!ssundaztood - Just Like A Pill.mp3<span class="v">&lt;s&gt;</span>G:\MP3s\!Pink - Missundaztood (8 of 14)\<span class="v">&lt;d&gt;</span>
+Pink Missunderstood - Respect.mp3<span class="v">&lt;s&gt;</span>G:\MP3s\!Pink - Missundaztood (8 of 14)\<span class="v">&lt;d&gt;</span>
+r&amp;b~rap - Pink--3-18 Wheeler.mp3<span class="v">&lt;s&gt;</span>G:\MP3s\!Pink - Missundaztood (8 of 14)\<span class="v">&lt;d&gt;</span>
+pink - Misery Feat. Steve Tyler &amp; Richie Sambora.mp3<span class="v">&lt;s&gt;</span>G:\MP3s\!Pink - Missundaztood (8 of 14)\<span class="v">&lt;d&gt;</span></pre>
+    <figcaption>Note "(8 of 14)" and the leading "!" — Pink's <em>Missundaztood</em> downloaded 8 of its 14 tracks. The album never completed, so it still sorts to the top of the folder 24 years later.</figcaption>
+  </figure>
+
+  <h3>errors.csv <span class="file">// partial structure, partial freeform</span></h3>
+  <p>
+    CSV-ish. Four fields: <code class="inline">song,artist,album,code</code>. The code is one of:
+    <code class="inline">0</code> (searched, got no usable result), <code class="inline">1</code> (only a
+    one-star result was available), or <code class="inline">xxx</code> (Audiogalaxy asked you to broaden your
+    search — i.e. zero hits). None of these are documented anywhere except the two elses in
+    <code class="inline">enqueueSong</code>.
+  </p>
+
+  <h3>albumList.txt <span class="file">// &lt; delimiter</span></h3>
+  <p>
+    The queue consumed by the interactive Jeffster.pl. Each line: FreeDB URL suffix, album name, artist name,
+    separated by literal <code class="inline">&lt;</code>:
+  </p>
+  <figure class="code">
+    <header><span class="fname">albumList.txt</span><span class="meta">// from the repo</span></header>
+<pre>?cat=rock&amp;id=d6097f10<span class="v">&lt;</span>White Blood Cells<span class="v">&lt;</span>The White Stripes
+?cat=rock&amp;id=af08d10d<span class="v">&lt;</span>De Stijl<span class="v">&lt;</span>The White Stripes
+?cat=rock&amp;id=2503c204<span class="v">&lt;</span>Hotel Yorba<span class="v">&lt;</span>The White Stripes
+?cat=rock&amp;id=da0a4311<span class="v">&lt;</span>The White Stripes<span class="v">&lt;</span>The White Stripes
+?cat=misc&amp;id=aa0a100c<span class="v">&lt;</span>The Guest<span class="v">&lt;</span>Phantom Planet</pre>
+    <figcaption>The White Stripes' first four albums, queued up on March 29, 2002. This list has been sitting in the repo untouched for 24 years.</figcaption>
+  </figure>
+</section>
+
+<!-- ========================================================= -->
+<section id="shame">
+  <div class="eyebrow">Section 07 &nbsp;&middot;&nbsp; The wall of shame</div>
+  <h2>Things 21-year-old me did that deserve to be remembered.</h2>
+  <p>
+    With great affection and the full benefit of 24 years of hindsight. None of these were wrong, exactly —
+    they <em>worked</em> — but they are all profoundly from the before-times.
+  </p>
+
+  <ol class="shame-list">
+
+    <li>
+      <div>
+        <div class="crime">No <code class="inline">use strict</code>. Anywhere.</div>
+        <div class="details">
+          Every variable is a global. Every typo is a silent NUL. Functions clobber each other's state.
+          <code class="inline">$i</code> is used as a loop variable in <em>at least four different subs</em>,
+          which all mutate the same global. The only reason this doesn't fall apart is that the call graph is
+          linear — one sub doesn't re-enter another while a third is still running.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">HTML parsed with regex.</div>
+        <div class="details">
+          Every one of Jeffster's data sources is scraped with regexes like
+          <code class="inline">/#FFFFFF;\"&gt;([^&lt;]+)&lt;\/span&gt;([^&lt;]+)&lt;\/span&gt;/</code>.
+          The entire pipeline is implicitly coupled to <em>Audiogalaxy's exact CSS choices</em>. Change the
+          background colour of a <code class="inline">&lt;span&gt;</code> and the downloader dies.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">Control flow via <code class="inline">goto</code>.</div>
+        <div class="details">
+          Jeffster.pl's main loop is <em>three nested labels</em> — <code class="inline">beginning:</code>,
+          <code class="inline">displayTitles:</code>, <code class="inline">beginDownload:</code> — with
+          <code class="inline">goto</code> statements threading between them. A <code class="inline">while(1)</code> and
+          a <code class="inline">last</code> would have sufficed. I didn't know about <code class="inline">last</code>.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">Hardcoded session IDs in URLs.</div>
+        <div class="details">
+          Look closely at the CDnow URLs:
+          <code class="inline">cgi-bin/mserver/SID=1188262721/…</code>.
+          That <code class="inline">1188262721</code> is <em>someone's session ID</em>, captured once from a browser
+          and pasted into the source. Every request is pretending to be whoever that was. It works until it doesn't.
+          The Audiogalaxy <code class="inline">SID</code> in Config.txt at least admits it's a SID.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">The "just <code class="inline">sleep 5</code>" school of synchronization.</div>
+        <div class="details">
+          The Audiogalaxy queue takes a moment to register a request, so <code class="inline">enqueueSong</code>
+          issues a GET, sleeps 5 seconds, then re-fetches the queue page to check if it succeeded. If not, it
+          retries, and sleeps another 5. The best songs sometimes took a full minute to enqueue. Over 14 tracks
+          that's 14 minutes per album. Over 12 albums that's a whole afternoon.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">Four near-identical copies of <code class="inline">configVals</code>.</div>
+        <div class="details">
+          <code class="inline">Jeffster.pl</code>, <code class="inline">jeffster1.2.pl</code>,
+          <code class="inline">SampleArtist.pl</code>, <code class="inline">songList.pl</code>, and
+          <code class="inline">FileSync.pl</code> each contain their own copy-pasted <code class="inline">sub configVals</code>.
+          Five copies. When I added <code class="inline">Number of Songs</code> to Config.txt, I only remembered
+          to update one of them.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">2-D arrays with the schema in a comment.</div>
+        <div class="details">
+          <code class="inline">$albumArray</code> is indexed <code class="inline">[row][column]</code> where row 0
+          is album count, row 1 is the artist name, row 2 is album titles, and rows 3+ are tracks. The "type definition"
+          lives exclusively in an ASCII-art comment above the sub. Row 0 is scalar. Rows 2+ are arrays. Row 1 is
+          a single string. Everything about this is wrong.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">State stored as filesystem mutations.</div>
+        <div class="details">
+          To "consume" an item from the work queue, the script opens <code class="inline">artistList.txt</code>,
+          reads every line, truncates the file, and rewrites it minus the top line. If the process crashes halfway
+          through, you've lost state. There was no recovery mechanism. There didn't need to be — you just reran it.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">Windows paths everywhere, backslashes and all.</div>
+        <div class="details">
+          <code class="inline">G:\MP3s\!</code> + artist + <code class="inline">\\</code>. Strings like
+          <code class="inline">"C:\Jeffster\"</code> — which in any double-quoted Perl string is a <em>real</em>
+          backslash-escape that the interpreter silently lets slide because <code class="inline">\J</code> isn't
+          a known escape sequence. One of the reasons this only ever ran on my Dell.
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <div class="crime">The filename-sanitising tr.</div>
+        <div class="details">
+          <code class="inline">$MP3Title =~ tr/[:\*\?\"|]/\-/;</code> — an attempt to strip characters that are
+          illegal in NTFS filenames. Except <code class="inline">tr</code> doesn't take character classes, so the
+          literal characters <code class="inline">[</code> and <code class="inline">]</code> are also in the
+          set being replaced. So were <code class="inline">\</code> and <code class="inline">"</code>, but
+          not <code class="inline">/</code>, which is the actually dangerous one. It mostly worked by accident.
+        </div>
+      </div>
+    </li>
+
+  </ol>
+</section>
+
+<!-- ========================================================= -->
+<section id="epilogue" class="epilogue">
+  <div class="eyebrow">Section 08 &nbsp;&middot;&nbsp; Epilogue</div>
+  <h2>What happened next.</h2>
+  <p>
+    <em>May 24, 2002.</em> The RIAA filed suit against Audiogalaxy. By June they had settled; by the end of the
+    summer the service was effectively dead. The Satellite daemon kept running for a while on a lot of computers,
+    but it had nothing to talk to.
+  </p>
+  <p>
+    <em>July 2002.</em> Amazon absorbed CDnow for $36 million. The discography URLs Jeffster depended on — all of
+    which were routed through that
+    <code style="font-family: 'JetBrains Mono', monospace; font-size: 14px;">cgi-bin/mserver/SID=…/pagename=/RP/CDN/FIND/…</code>
+    rigmarole — stopped resolving shortly afterward.
+  </p>
+  <p>
+    <em>Late 2000s.</em> FreeDB was superseded by its successor Gracenote CDDB and eventually by MusicBrainz, and
+    limped along in various forks before its servers went cold around 2020. The specific query format Jeffster used
+    had stopped being reliable much earlier.
+  </p>
+  <p>
+    <em>Every script in this repository was finalised in March 2002.</em> The only commits after that — in January
+    2015 and today — are me rediscovering this directory and being equal parts horrified and charmed.
+  </p>
+  <p style="margin-top: 32px; font-size: 16px; color: var(--ink-faded); font-style: normal; font-family: 'JetBrains Mono', monospace;">
+    The code still runs. It just has nothing left to talk to.
+  </p>
+</section>
+
+<footer class="page-foot">
+  <div>jeffster-archaeology.html</div>
+  <div>compiled 2026 · from perl written 2002</div>
+</footer>
+
+</main>
+
+</div>
+
+</body>
+</html>
